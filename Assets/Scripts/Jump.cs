@@ -7,7 +7,12 @@ public class Jump : MonoBehaviour
     [SerializeField]
     float force = 0f;
     [SerializeField]
+    float lim = 0f;
+    [SerializeField]
+    float velo = 0f;
+    [SerializeField]
     Rigidbody2D rb = null;
+    float counter = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,20 +22,34 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("space"))
+        if (counter < lim)
         {
-            rb.AddForce(new Vector2(0f, force));
-
+            if (Input.GetKey("space"))
+            {
+                rb.AddForce(new Vector2(0f, force));
+                counter++;
+            }
         }
+
+        if (Input.GetKeyUp("space"))
+        {
+            counter = lim;
+        }
+        
         if (Input.GetKey("a"))
         {
-            rb.AddForce(new Vector2(10f, 0f));
+            rb.AddForce(new Vector2(-velo, 0f));
 
         }
         if (Input.GetKey("d"))
         {
-            rb.AddForce(new Vector2(-10f, 0f));
+            rb.AddForce(new Vector2(velo, 0f));
 
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        counter = 0;
     }
 }
