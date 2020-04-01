@@ -24,12 +24,12 @@ public class Jump : MonoBehaviour
         }
         if (Input.GetKey("a"))
         {
-            rb.AddForce(new Vector2(10f, 0f));
+            rb.AddForce(new Vector2(-10f, 0f));
 
         }
         if (Input.GetKey("d"))
         {
-            rb.AddForce(new Vector2(-10f, 0f));
+            rb.AddForce(new Vector2(10f, 0f));
 
         }
     }
