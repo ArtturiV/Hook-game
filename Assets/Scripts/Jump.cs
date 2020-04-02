@@ -38,13 +38,22 @@ public class Jump : MonoBehaviour
         
         if (Input.GetKey("a"))
         {
-            rb.AddForce(new Vector2(-velo, 0f));
+            rb.velocity = new Vector2(-velo, rb.velocity.y);
 
         }
         if (Input.GetKey("d"))
         {
-            rb.AddForce(new Vector2(velo, 0f));
+            rb.velocity = new Vector2(velo, rb.velocity.y);
 
+        }
+
+        if (Input.GetKeyUp("a"))
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
+        if (Input.GetKeyUp("d"))
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
         }
     }
 

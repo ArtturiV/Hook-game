@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8740867110234137102}
   - component: {fileID: -5736723113154063733}
   - component: {fileID: -6445422373904277544}
+  - component: {fileID: 4829614516031309078}
   m_Layer: 0
   m_Name: Heppu
   m_TagString: Untagged
@@ -99,7 +100,7 @@ PolygonCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.03, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.15, y: 0.2}
     newSize: {x: 0.15, y: 0.2}
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-6445422373904277544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f89c958ce65764687a0517f990d166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 7
-  lim: 60
+  force: 30
+  lim: 10
   velo: 3
   rb: {fileID: -5736723113154063733}
+--- !u!114 &4829614516031309078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925087594993510720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a033451c9b124cf48b03c03b24919cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
