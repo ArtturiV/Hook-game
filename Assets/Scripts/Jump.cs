@@ -13,6 +13,7 @@ public class Jump : MonoBehaviour
     [SerializeField]
     Rigidbody2D rb = null;
     float counter = 0;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -128,15 +128,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6445422373904277544, guid: 637c6c0800543bc4a916021486cc385a,
+        type: 3}
+      propertyPath: force
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -6445422373904277544, guid: 637c6c0800543bc4a916021486cc385a,
+        type: 3}
+      propertyPath: velo
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: -5736723113154063733, guid: 637c6c0800543bc4a916021486cc385a,
         type: 3}
       propertyPath: m_LinearDrag
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -5736723113154063733, guid: 637c6c0800543bc4a916021486cc385a,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1925087594993510720, guid: 637c6c0800543bc4a916021486cc385a,
         type: 3}
       propertyPath: m_Name
       value: Heppu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560178514162364402, guid: 637c6c0800543bc4a916021486cc385a,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9081967008024166870, guid: 637c6c0800543bc4a916021486cc385a,
         type: 3}
@@ -208,7 +228,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8740867110234137102, guid: 637c6c0800543bc4a916021486cc385a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 637c6c0800543bc4a916021486cc385a, type: 3}
 --- !u!1 &872150159
 GameObject:
@@ -1320,8 +1341,8 @@ Tilemap:
   - first: {x: -5, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileIndex: 9
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2163,9 +2184,9 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 388c031716ff7f4459f21e166cf0d845, type: 2}
   - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: 740fad578a533414abdf0a723d036450, type: 2}
-  - m_RefCount: 14
+  - m_RefCount: 13
     m_Data: {fileID: 11400000, guid: df1bcd9a0a0dc5048a78dbe148672344, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: e135ea45c55dc0545a8f5403b6987ab1, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 223e24c614ba51342a5e4bc7bd3373d8, type: 2}
@@ -2198,10 +2219,10 @@ Tilemap:
   - m_RefCount: 10
     m_Data: {fileID: 3084114295605575412, guid: 46a863435234cc74eb10312afe3b8b8e,
       type: 3}
-  - m_RefCount: 14
+  - m_RefCount: 13
     m_Data: {fileID: -309100294312837113, guid: 46a863435234cc74eb10312afe3b8b8e,
       type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: -6753722715914036388, guid: 46a863435234cc74eb10312afe3b8b8e,
       type: 3}
   - m_RefCount: 3
@@ -2275,3 +2296,51 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1830772069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1925087594993510720, guid: 637c6c0800543bc4a916021486cc385a,
+    type: 3}
+  m_PrefabInstance: {fileID: 103703333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1830772073
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830772069}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.013740897, y: -0.04}
+  serializedVersion: 2
+  m_Radius: 0.061167
+--- !u!61 &1830772076
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830772069}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.013758458, y: 0.030956626}
+  m_SpriteTilingProperty:
+    border: {x: 0.03, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.15, y: 0.2}
+    newSize: {x: 0.15, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12248309, y: 0.13808674}
+  m_EdgeRadius: 0

@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class SpriteFlipper : MonoBehaviour
 {
-    SpriteRenderer sr;
-    
+
+    bool turned = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") && !turned)
         {
-            sr.flipX = true;
-            
+            transform.Rotate(Vector3.down * -180);
+            turned = true;
+
         }
 
-        if (Input.GetKey("d") && sr.flipX)
+        if (Input.GetKey("d") && turned)
         {
-            sr.flipX = false;
-            
+            transform.Rotate(Vector3.down * -180);
+            turned = false;
+
         }
     }
 }
