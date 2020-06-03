@@ -48,6 +48,7 @@ public class RopeSystem : MonoBehaviour
 
         // 4
         var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
+        crosshair.rotation = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg-45);
         // 5
         playerPosition = transform.position;
 
