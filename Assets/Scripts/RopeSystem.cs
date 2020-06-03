@@ -8,6 +8,8 @@ public class RopeSystem : MonoBehaviour
 
     private Dictionary<Vector2, int> wrapPointsLookup = new Dictionary<Vector2, int>();
 
+    [SerializeField]
+    GameObject hook = null;
     public GameObject ropeHingeAnchor;
     public DistanceJoint2D ropeJoint;
     public Transform crosshair;
@@ -17,6 +19,10 @@ public class RopeSystem : MonoBehaviour
     private Vector2 playerPosition;
     private Rigidbody2D ropeHingeAnchorRb;
     private SpriteRenderer ropeHingeAnchorSprite;
+    Vector3 crossHairPosition;
+    Vector3 aimDirection;
+    float aimAngle;
+    
 
     public LineRenderer ropeRenderer;
     public LayerMask ropeLayerMask;
@@ -40,14 +46,14 @@ public class RopeSystem : MonoBehaviour
         var worldMousePosition =
             Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         var facingDirection = worldMousePosition - transform.position;
-        var aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
+        aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
         if (aimAngle < 0f)
         {
             aimAngle = Mathf.PI * 2 + aimAngle;
         }
 
         // 4
-        var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
+        aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
         crosshair.rotation = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg-45);
         // 5
         playerPosition = transform.position;
@@ -106,29 +112,30 @@ public class RopeSystem : MonoBehaviour
         var x = transform.position.x + 1f * Mathf.Cos(aimAngle);
         var y = transform.position.y + 1f * Mathf.Sin(aimAngle);
 
-        var crossHairPosition = new Vector3(x, y, 0);
+        crossHairPosition = new Vector3(x, y, 0);
         crosshair.transform.position = crossHairPosition;
     }
 
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             // 2
             if (ropeAttached) return;
             ropeRenderer.enabled = true;
-
+            Instantiate(hook, crossHairPosition, Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg - 90f));
             var hit = Physics2D.Raycast(playerPosition, aimDirection, ropeMaxCastDistance, ropeLayerMask);
 
             // 3
-            if (hit.collider != null)
+            /*if (hit.collider != null)
             {
                 ropeAttached = true;
+                playerMovement.isSwinging = true;
                 if (!ropePositions.Contains(hit.point))
                 {
                     // 4
                     // Jump slightly to distance the player a little from the ground after grappling to something.
-                    transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
+                    //transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
                     ropePositions.Add(hit.point);
                     ropeJoint.distance = Vector2.Distance(playerPosition, hit.point);
                     ropeJoint.enabled = true;
@@ -141,12 +148,29 @@ public class RopeSystem : MonoBehaviour
                 ropeRenderer.enabled = false;
                 ropeAttached = false;
                 ropeJoint.enabled = false;
-            }
+            }*/
         }
 
         if (Input.GetMouseButton(1))
         {
+            Destroy(hook);
             ResetRope();
+        }
+    }
+
+    public void tormaa(Vector2 piste)
+    {
+        ropeAttached = true;
+        playerMovement.isSwinging = true;
+        if (!ropePositions.Contains(piste))
+        {
+            // 4
+            // Jump slightly to distance the player a little from the ground after grappling to something.
+            //transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
+            ropePositions.Add(piste);
+            ropeJoint.distance = Vector2.Distance(playerPosition, piste);
+            ropeJoint.enabled = true;
+            ropeHingeAnchorSprite.enabled = true;
         }
     }
 

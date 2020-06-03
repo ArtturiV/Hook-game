@@ -14,6 +14,7 @@ public class Jump : MonoBehaviour
     Rigidbody2D rb = null;
     float counter = 0;
     public bool isSwinging = false;
+    public bool col;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,43 +24,64 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (counter < lim)
+        if (isSwinging && !col)
         {
-            if (Input.GetKey("space"))
+            if (Input.GetKey("a"))
             {
-                rb.AddForce(new Vector2(0f, force));
-                counter++;
+                rb.AddForce(new Vector2(0.1f*-force, 0f));                
+            }
+            if (Input.GetKey("d"))
+            {
+                rb.AddForce(new Vector2(0.1f*force, 0f));
             }
         }
-
-        if (Input.GetKeyUp("space"))
+        else
         {
-            counter = lim;
+            if (counter < lim)
+            {
+                if (Input.GetKey("space"))
+                {
+                    rb.AddForce(new Vector2(0f, force));
+                    counter++;
+                }
+            }
+
+            if (Input.GetKeyUp("space"))
+            {
+                counter = lim;
+            }
+
+            if (Input.GetKey("a"))
+            {
+                rb.velocity = new Vector2(-velo, rb.velocity.y);
+
+            }
+            if (Input.GetKey("d"))
+            {
+                rb.velocity = new Vector2(velo, rb.velocity.y);
+
+            }
+
+            if (Input.GetKeyUp("a"))
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+            if (Input.GetKeyUp("d"))
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
         }
         
-        if (Input.GetKey("a"))
-        {
-            rb.velocity = new Vector2(-velo, rb.velocity.y);
-
-        }
-        if (Input.GetKey("d"))
-        {
-            rb.velocity = new Vector2(velo, rb.velocity.y);
-
-        }
-
-        if (Input.GetKeyUp("a"))
-        {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
-        if (Input.GetKeyUp("d"))
-        {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         counter = 0;
+        col = true;
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        col = false;
     }
 }
