@@ -154,7 +154,7 @@ public class RopeSystem : MonoBehaviour
     {
         ropeJoint.enabled = false;
         ropeAttached = false;
-        //playerMovement.isSwinging = false;
+        playerMovement.isSwinging = false;
         ropeRenderer.positionCount = 2;
         ropeRenderer.SetPosition(0, transform.position);
         ropeRenderer.SetPosition(1, transform.position);
